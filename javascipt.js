@@ -22,6 +22,8 @@ function getComputerChoice() {
 
 function getHumanChoice() {
 
+    humanChoice=prompt("Choose one: rock, paper or scissor.");
+    
     return humanChoice;
 }
 
@@ -36,3 +38,4 @@ function playGame() {
 }
 
 console.log("The computer chose " + getComputerChoice());
+console.log("The human chose " + getHumanChoice());
