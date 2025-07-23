@@ -2,8 +2,8 @@ console.log("Hello World!");
 
 let humanChoice;
 let computerChoice;
-let humanScore;
-let computerScore;
+let humanScore = 0;
+let computerScore = 0;
 
 function getComputerChoice() {
     
@@ -22,7 +22,7 @@ function getComputerChoice() {
 
 function getHumanChoice() {
 
-    humanChoice=prompt("Choose one: rock, paper or scissor.");
+    humanChoice=prompt("Choose one: rock, paper or scissor.").toLowerCase();
     
     return humanChoice;
 }
