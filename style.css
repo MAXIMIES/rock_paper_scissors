@@ -1,0 +1,117 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 20px;
+    width: 400px;
+    height: 600px;
+    margin-top:100px;
+    border-radius: 20px;
+    background-color: rgb(217, 217, 217);
+}
+
+#buttons-div {
+    display: flex;
+    justify-content: space-around;
+    max-width: auto;
+
+}
+
+.button-style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:none;
+    border-radius: 20px;
+    background-color: azure;
+    width: auto;
+    height: 45px;
+    padding: 10px;
+    font-size: 20px;
+    color:rgb(97, 97, 97);
+
+
+}
+
+.button-onclick{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:none;
+    border-radius: 20px;
+    background-color: rgb(87, 87, 87);
+    width: auto;
+    height: 45px;
+    padding: 10px;
+    font-size: 20px;
+    color:rgb(255, 254, 254);
+}
+
+#log {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    border-radius: 20px;
+    background-color: azure;
+
+    color:rgb(97, 97, 97);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+
+}
+#results {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    height: 200px;
+    background-color: azure;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 200px;
+
+}
+
+#images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#player-hand {
+
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    background-color: azure;
+    width: 160px;
+    height: 160px;
+    
+    overflow: hidden;
+
+}
+
+#computer-hand {
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    background-color: azure;
+    width: 160px;
+    height: 160px;
+   
+    overflow: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    object-fit: scale-down;
+}
