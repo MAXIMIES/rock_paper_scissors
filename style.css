@@ -13,13 +13,15 @@ body{
     width: 400px;
     height: 600px;
     margin-top:100px;
+    border:solid 2px grey;
     border-radius: 20px;
-    background-color: rgb(217, 217, 217);
+    background-color: rgb(255, 177, 108);
+    
 }
 
 #buttons-div {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     max-width: auto;
 
 }
@@ -30,12 +32,11 @@ body{
     align-items: center;
     border:none;
     border-radius: 20px;
-    background-color: azure;
-    width: auto;
+    background-color: rgb(253, 143, 9);    width: auto;
     height: 45px;
     padding: 10px;
     font-size: 20px;
-    color:rgb(97, 97, 97);
+    color:rgb(255, 255, 255);
 
 
 }
@@ -46,7 +47,7 @@ body{
     align-items: center;
     border:none;
     border-radius: 20px;
-    background-color: rgb(87, 87, 87);
+    background-color: rgb(252, 213, 129);
     width: auto;
     height: 45px;
     padding: 10px;
@@ -60,11 +61,11 @@ body{
     align-items: center;
     height: 50px;
     border-radius: 20px;
-    background-color: azure;
+    background-color: rgb(255, 226, 147);
 
     color:rgb(97, 97, 97);
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
+    font-size: 20px;
 
 }
 #results {
@@ -73,7 +74,7 @@ body{
     align-items: center;
     border-radius: 20px;
     height: 200px;
-    background-color: azure;
+    background-color: rgb(255, 226, 147);
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 200px;
 
@@ -81,9 +82,9 @@ body{
 
 #images {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    gap: auto;
 }
 
 #player-hand {
@@ -91,7 +92,7 @@ body{
     display: flex;
     justify-content: center;
     border-radius: 20px;
-    background-color: azure;
+    background-color: rgb(255, 226, 147);
     width: 160px;
     height: 160px;
     
@@ -103,7 +104,7 @@ body{
     display: flex;
     justify-content: center;
     border-radius: 20px;
-    background-color: azure;
+    background-color: rgb(255, 226, 147);
     width: 160px;
     height: 160px;
    
@@ -114,4 +115,24 @@ img {
     max-width: 100%;
     height: auto;
     object-fit: scale-down;
+    position: relative;
+
+}
+
+img.no-animation{
+    animation-name: none;
+}
+
+img.animation-win{
+    animation-name: bounce;
+    animation-duration: 0.5s;
+}
+
+@keyframes bounce{
+    0%   {left:0px; top:0px;}
+    25%  {left:0px; top:20px;}
+    50%  {left:0px; top:0px;}
+    75%  {left:0px; top:10px;}
+    100% {left:0px; top:0px;}
+
 }

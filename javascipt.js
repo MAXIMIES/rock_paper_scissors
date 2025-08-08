@@ -70,12 +70,43 @@ function imageSwapper(human, comp) {
 
 }
 
+function bounce(bouncer) {
+    if(bouncer == "human"){
+        imgPlayer.classList.add("animation-win");
+        imgPlayer.addEventListener("animationend", () =>{
+            imgPlayer.classList.remove("animation-win");
+            console.log(imgPlayer.classList);
+        });
+
+    }else if(bouncer == "computer") {
+        console.log("---------------ARRIVED BOUNCE COMP");
+
+        imgComputer.classList.add("animation-win");
+        imgComputer.addEventListener("animationend", () =>{
+            imgComputer.classList.remove("animation-win");
+            console.log(imgComputer.classList);
+        });
+    
+    }
+}
+
+function firstLetterToUpperCase(string){
+    console.log("-----------"+string);
+    let array = [];
+    array = Array.from(string);
+    array[0] = array[0].toUpperCase();
+    console.log(array);
+    let returnableString = ''; 
+    array.forEach((letter) => returnableString += letter);
+    console.log(returnableString);
+    return returnableString;
+}
 
     function playRoundForUi(input) {
         const humanChoice = input;
         const computerChoice =getComputerChoice();
         
-        imageSwapper(humanChoice, computerChoice);
+        imageSwapper(humanChoice, computerChoice); 
 
         console.log("playRound recieved human value: " + humanChoice);
         console.log("playRound recieved computer value: " + computerChoice);
@@ -90,12 +121,14 @@ function imageSwapper(human, comp) {
                   ((humanChoice=="paper")&&(computerChoice=="rock")) || 
                   ((humanChoice=="scissor"||
                   humanChoice=="scissors")&&(computerChoice=="paper"))){
-                return "human";
+                    
+                  return "human";
               
             }else if((( humanChoice=="scissors"||
                         humanChoice=="scissor")&&computerChoice=="rock") || 
                         (humanChoice=="rock"&&computerChoice=="paper") || 
                         (humanChoice=="paper"&&(computerChoice=="scissor" || computerChoice=="scissors"))){
+                        
                         return "computer";
                                       
             }else{
@@ -105,13 +138,14 @@ function imageSwapper(human, comp) {
             console.log("Incorret input. Reload page and try again.")
 
         }
+                 
+
     }
 
 
 
 
 function playGameForUi(input) {
-
  
     round+=1;
         console.log("----ROUND " + (round)+"----");
@@ -119,11 +153,11 @@ function playGameForUi(input) {
         let winner = playRoundForUi(input);
         
         if (winner=="human") {
-            
+            bounce(winner);
             return 1;
             
         }else if (winner=="computer") {
-            
+            bounce(winner);
             return 0;
         }
             
@@ -141,14 +175,19 @@ function winnerChek(human, computer){
     }
 }
 
-document.addEventListener("click", function(event){
-    
-    let choice = event.target.tagName.toLowerCase()
-    if(choice == "button" ){
+function playerClick(choice,event){
         let game = playGameForUi(event.target.id);
         if(game==1){
             scoreHuman += 1;
-            log.innerHTML = "You win! " + event.target.id + " beats " + computerChoice + ".";
+
+            log.innerHTML = "You win! " + firstLetterToUpperCase(choice) + " beats " + computerChoice + ".";
+            
+            /*           imgPlayer.classList.add("animation-win");
+            imgPlayer.addEventListener("animationend", () =>{
+                imgPlayer.classList.remove("animation-win");
+                console.log(imgPlayer.classList);
+            }); */
+            
             
             switch (winnerChek(scoreHuman,scoreComputer)) {
                 case 1:
@@ -168,9 +207,15 @@ document.addEventListener("click", function(event){
 
         }else if(game==0){
             scoreComputer += 1;
-           // let logPara = document.createElement("p");
-            log.innerHTML = "You Lose! " + choice + " does not beat " + computerChoice + ".";
-            //log.appendChild(logPara);
+            
+            log.innerHTML = "You Lose! " + firstLetterToUpperCase(choice) + " does not beat " + computerChoice + ".";
+            
+            /*   imgComputer.classList.add("aniamtion-win");
+            imgComputer.addEventListener("animationend", () =>{
+                imgComputer.classList.remove("animation-win");
+                console.log(imgComputer.classList);
+            });  */
+
             switch (winnerChek(scoreHuman,scoreComputer)) {
                 case 1:
                     log.innerHTML = "You win!"
@@ -188,11 +233,17 @@ document.addEventListener("click", function(event){
             }  
 
         }
+    }
+document.addEventListener("click", function(event){
+
+    let choice = event.target.tagName.toLowerCase()
+    if(choice == "button" ){
+        playerClick(event.target.id.toLowerCase(),event);
          
     }
     textScore = scoreHuman+"-"+scoreComputer;
     results.innerHTML = textScore;
-    
+   
 });
 
 
