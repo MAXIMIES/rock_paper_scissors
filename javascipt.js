@@ -11,7 +11,10 @@ let textScore = scoreHuman+"-"+scoreComputer;
 results.innerHTML = textScore;
 
 let imgPlayer = document.getElementById("player-image");
+let shadowPlayer = document.getElementById("player-shadow");
+
 let imgComputer = document.getElementById("computer-image");
+let shadowComp = document.getElementById("comp-shadow");
 
 
 function getComputerChoice() {
@@ -25,8 +28,6 @@ function getComputerChoice() {
         }else{
             computerChoice="scissors"
         }
-       
-
     return computerChoice;
 }
 
@@ -36,8 +37,7 @@ function getHumanChoice() {
     humanChoice=prompt("Choose one: rock, paper or scissor.").toLowerCase();
     humanChoice.trim();
 
-    return humanChoice;
-    
+    return humanChoice;  
 }
 
 function imageSwapper(human, comp) {
@@ -67,38 +67,32 @@ function imageSwapper(human, comp) {
         default:
             break;
     }    
-
 }
 
 function bounce(bouncer) {
     if(bouncer == "human"){
         imgPlayer.classList.add("animation-win");
+        shadowPlayer.classList.add("animation-win");
         imgPlayer.addEventListener("animationend", () =>{
             imgPlayer.classList.remove("animation-win");
-            console.log(imgPlayer.classList);
+            shadowPlayer.classList.remove("animation-win");
         });
-
     }else if(bouncer == "computer") {
-        console.log("---------------ARRIVED BOUNCE COMP");
-
         imgComputer.classList.add("animation-win");
+        shadowComp.classList.add("animation-win");
         imgComputer.addEventListener("animationend", () =>{
             imgComputer.classList.remove("animation-win");
-            console.log(imgComputer.classList);
+            shadowComp.classList.remove("animation-win");
         });
-    
     }
 }
 
 function firstLetterToUpperCase(string){
-    console.log("-----------"+string);
     let array = [];
     array = Array.from(string);
     array[0] = array[0].toUpperCase();
-    console.log(array);
     let returnableString = ''; 
     array.forEach((letter) => returnableString += letter);
-    console.log(returnableString);
     return returnableString;
 }
 
@@ -107,9 +101,6 @@ function firstLetterToUpperCase(string){
         const computerChoice =getComputerChoice();
         
         imageSwapper(humanChoice, computerChoice); 
-
-        console.log("playRound recieved human value: " + humanChoice);
-        console.log("playRound recieved computer value: " + computerChoice);
 
         if( humanChoice=="rock"||
             humanChoice=="paper"||
@@ -136,14 +127,8 @@ function firstLetterToUpperCase(string){
             }
         }else{
             console.log("Incorret input. Reload page and try again.")
-
         }
-                 
-
     }
-
-
-
 
 function playGameForUi(input) {
  
@@ -160,19 +145,47 @@ function playGameForUi(input) {
             bounce(winner);
             return 0;
         }
-            
- 
-
 }
 
 function winnerChek(human, computer){
-    if (human==5){
+    if (human==1){
         return 1;
-    }else if(computer==5){
+    }else if(computer==1){
         return 0;
     }else{
         return "not yet";
     }
+}
+
+function winFeedback(cond){
+    let cont = document.querySelector("#card");
+    let wincont = document.createElement("div");
+    let winbox = document.createElement("div");
+    wincont.id = "wincontainer";
+    winbox.id = "winbox";
+    let wintext = document.createElement("p");
+    let okButton = document.createElement("button");
+    okButton.innerHTML = "OK";
+    okButton.className = "button-style";
+    okButton.addEventListener("click",(event)=>{
+        cont.removeChild(wincont);
+        scoreComputer = 0; 
+        scoreHuman = 0;
+        log.innerHTML = "Let's Play!"
+    })
+    switch(cond){
+        case 1:
+            wintext.innerHTML= "You won!";
+            break;
+        case 0:
+            wintext.innerHTML = "Computer wins!"
+            break; 
+        }
+    winbox.appendChild(wintext);
+    winbox.appendChild(okButton);
+    wincont.appendChild(winbox);
+    cont.appendChild(wincont);
+
 }
 
 function playerClick(choice,event){
@@ -181,24 +194,15 @@ function playerClick(choice,event){
             scoreHuman += 1;
 
             log.innerHTML = "You win! " + firstLetterToUpperCase(choice) + " beats " + computerChoice + ".";
-            
-            /*           imgPlayer.classList.add("animation-win");
-            imgPlayer.addEventListener("animationend", () =>{
-                imgPlayer.classList.remove("animation-win");
-                console.log(imgPlayer.classList);
-            }); */
-            
-            
+
             switch (winnerChek(scoreHuman,scoreComputer)) {
                 case 1:
                     log.innerHTML = "You win!"
-                    scoreComputer = 0; 
-                    scoreHuman = 0;
+                    winFeedback(game);                   
                     break;
                 case 0:
-                    log.innerHTML = "Computer wins!"       
-                    scoreComputer = 0;
-                    scoreHuman = 0;
+                    log.innerHTML = "Computer wins!"
+                    winFeedback(game);       
                     break;  
                 case "not yet":
                     
@@ -209,23 +213,15 @@ function playerClick(choice,event){
             scoreComputer += 1;
             
             log.innerHTML = "You Lose! " + firstLetterToUpperCase(choice) + " does not beat " + computerChoice + ".";
-            
-            /*   imgComputer.classList.add("aniamtion-win");
-            imgComputer.addEventListener("animationend", () =>{
-                imgComputer.classList.remove("animation-win");
-                console.log(imgComputer.classList);
-            });  */
 
             switch (winnerChek(scoreHuman,scoreComputer)) {
                 case 1:
                     log.innerHTML = "You win!"
-                    scoreComputer = 0; 
-                    scoreHuman = 0;
+                    winFeedback(game);
                     break;
                 case 0:
                     log.innerHTML = "Computer wins!"       
-                    scoreComputer = 0;
-                    scoreHuman = 0;
+                    winFeedback(game);
                     break;  
                 case "not yet":
                     
@@ -234,6 +230,7 @@ function playerClick(choice,event){
 
         }
     }
+
 document.addEventListener("click", function(event){
 
     let choice = event.target.tagName.toLowerCase()
@@ -266,4 +263,4 @@ document.addEventListener("mouseup", function(event){
 
 })
 
-// playGame();
+

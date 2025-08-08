@@ -47,7 +47,8 @@ header{
     align-items: center;
     border:none;
     border-radius: 20px;
-    background-color: rgb(253, 143, 9);    width: auto;
+    background-color: rgb(253, 143, 9);    
+    width: auto;
     height: 45px;
     padding: 10px;
     font-size: 20px;
@@ -103,8 +104,8 @@ header{
 }
 
 #player-hand {
-
     display: flex;
+    flex-direction: column;
     justify-content: center;
     border-radius: 20px;
     background-color: rgb(255, 226, 147);
@@ -117,6 +118,7 @@ header{
 
 #computer-hand {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     border-radius: 20px;
     background-color: rgb(255, 226, 147);
@@ -131,6 +133,52 @@ img {
     height: auto;
     object-fit: scale-down;
     position: relative;
+
+}
+
+#player-shadow {
+    align-self: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 5px;
+    width: 80px;
+
+ 
+    
+}
+
+#comp-shadow {
+    align-self: center;
+    background-color:rgba(0, 0, 0, 0.5);
+    height: 5px;
+    width: 80px;
+
+  
+}
+
+#player-shadow.no-animation{
+    animation-name: none;
+}
+
+#player-shadow.animation-win{
+    animation-name: shadow-bounce;
+    animation-duration: 0.5s;
+}
+
+#comp-shadow.no-animation{
+    animation-name: none;
+}
+
+#comp-shadow.animation-win{
+    animation-name: shadow-bounce;
+    animation-duration: 0.5s;
+}
+
+@keyframes shadow-bounce{
+    0%   {width:80px;}
+    25%  {width:40px;}
+    50%  {width:80px;}
+    75%  {width:60px;}
+    100% {width:80px;}
 
 }
 
@@ -159,4 +207,36 @@ footer {
     align-self: stretch;
     margin-top: auto;
     color:rgb(174, 174, 174);
+}
+
+#wincontainer{
+    display:flex;
+    position:absolute;
+    z-index: 0;
+    padding:auto;
+    justify-content: center;
+    align-self: center;
+    
+    
+}
+#winbox {
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    
+    border: 10px solid rgb(253, 143, 9);    
+    border-radius: 20px;
+    padding: 50px;
+
+    max-width: 200px;
+    max-height: 150px;
+    background-color: rgb(255, 185, 99);
+
+    font-size: 30px;
+
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.5);
+
+    
+    cursor: pointer; /* Add a pointer on hover */
+    
 }
