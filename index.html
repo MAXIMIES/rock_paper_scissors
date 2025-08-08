@@ -4,9 +4,17 @@
         <meta charset="UTF-8">
         <title>Rock Paper Scissors</title>
         <link  rel="stylesheet" href="style.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+   
     </head>
     <body>
-        <div id="container"> 
+        <header class = "rubik-mono-one-regular">
+            <p>ROCK PAPER SCISSORS</p>
+        </header>
+        <div id="card"> 
             <div id="images">
                 <div id="player-hand">
                     <img id="player-image" src="./img/playerRock.png" class="no-animation">
@@ -22,10 +30,13 @@
                 <button id="paper" class="button-style">PAPER</button>
                 <button id="scissors" class="button-style">SCISSORS</button>
             </div>
-            <div id="log"></div>
+            <div id="log">Let's Play!</div>
             <div id="results"></div>
             
         </div>
+        <footer>
+           <p>2025</p>
+        </footer>
         <script src="javascipt.js"></script>
     </body>
 </html>
