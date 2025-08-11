@@ -148,9 +148,9 @@ function playGameForUi(input) {
 }
 
 function winnerChek(human, computer){
-    if (human==1){
+    if (human==3){
         return 1;
-    }else if(computer==1){
+    }else if(computer==3){
         return 0;
     }else{
         return "not yet";
